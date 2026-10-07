@@ -185,11 +185,12 @@ Singleton {
 
   // --- the sound, as bars (cava) ------------------------------------------------------
 
-  // Who's looking: the panel, the Control Center. Nobody, cava rests.
+  // Who's looking: the panel, the Control Center, the bar's little bars.
+  // Nobody, cava rests.
   property bool panelOpen: false
   property bool centerOpen: false
   property bool hasCava: false
-  readonly property bool listening: drawSound && hasCava && playing && (panelOpen || centerOpen)
+  readonly property bool listening: drawSound && hasCava && playing && (panelOpen || centerOpen || inBar)
   property var levels: []
 
   Process {
