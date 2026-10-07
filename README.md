@@ -29,6 +29,10 @@ whole player.
 - **In the Control Center**, in place of its music: the cover, the
   buttons, the bar with its times, the sound and a dot for each player.
 
+![YouTube in Firefox, on a real desktop](media/youtube.webp)
+
+![Paused: the cover settles back, the sound rests](media/paused.webp)
+
 ![In the Control Center](media/control-center.webp)
 
 `SUPER + ALT + N` opens it; in the palette, "Now Playing" plays, pauses

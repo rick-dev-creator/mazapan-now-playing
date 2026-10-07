@@ -138,7 +138,9 @@ Item {
     ColumnLayout {
       Layout.fillWidth: true
       spacing: 2
-      visible: root.np.length > 0
+      // Always in its place: no jump when a player stops saying the length.
+      opacity: root.np.length > 0 ? 1 : 0.35
+      Behavior on opacity { enabled: Theme.motion; NumberAnimation { duration: 250 } }
 
       Seek {
         Layout.fillWidth: true
@@ -151,9 +153,9 @@ Item {
       }
       RowLayout {
         Layout.fillWidth: true
-        Caption { text: root.np.time(root.np.position); font.letterSpacing: 0; font.family: Theme.fontMono; color: Theme.fgMuted }
+        Caption { text: root.np.length > 0 ? root.np.time(root.np.position) : ""; font.letterSpacing: 0; font.family: Theme.fontMono; color: Theme.fgMuted }
         Item { Layout.fillWidth: true }
-        Caption { text: "-" + root.np.time(root.np.length - root.np.position); font.letterSpacing: 0; font.family: Theme.fontMono; color: Theme.fgMuted }
+        Caption { text: root.np.length > 0 ? "-" + root.np.time(root.np.length - root.np.position) : ""; font.letterSpacing: 0; font.family: Theme.fontMono; color: Theme.fgMuted }
       }
     }
 
