@@ -1,7 +1,7 @@
 [plugin]
 id = "now-playing"
 name = "Now Playing"
-version = "0.1.1"
+version = "0.1.2"
 api = 1
 description = "What's playing, wherever it plays: Spotify, YouTube in a browser, mpv… in the bar, the Control Center and a panel with every player, the cover's colors, a bar to drag through the song and the sound drawn as it plays"
 requires = ["shell-bar", "hypr-base"]

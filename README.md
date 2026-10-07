@@ -55,7 +55,7 @@ player, Esc (or a click outside) closes.
   bar's widget, the Control Center's section, the panel), its key in
   Hyprland, and its settings, read as they change (no reload).
 
-The Control Center's own music steps aside for it from Mazapan 0.4.2 on: a
+The Control Center's own music steps aside for it from Mazapan 0.5.0 on: a
 Control Center part with the same name and a higher number takes the
 other's place. With this plugin off, the original is back.
 
