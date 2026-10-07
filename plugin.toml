@@ -1,0 +1,133 @@
+[plugin]
+id = "now-playing"
+name = "Now Playing"
+version = "0.1.0"
+api = 1
+description = "What's playing, wherever it plays: Spotify, YouTube in a browser, mpv… in the bar, the Control Center and a panel with every player, the cover's colors, a bar to drag through the song and the sound drawn as it plays"
+requires = ["shell-bar", "hypr-base"]
+categories = ["panel", "bar"]
+author = "RickDev"
+homepage = "https://github.com/rick-dev-creator/mazapan-now-playing"
+license = "MIT"
+
+# How it looks, for the plugin gallery (mazapan.dev/plugins).
+[gallery]
+icon = "media/icon.svg"
+screenshots = ["media/panel.webp", "media/control-center.webp", "media/light.webp"]
+
+# The sound drawn as it plays.
+[packages]
+pacman = ["cava"]
+
+[settings]
+# Opens the Now Playing panel.
+key = "SUPER + ALT + N"
+# What's playing in the bar, beside the clock.
+bar = true
+# The sound drawn as it plays, in the panel and the Control Center (cava listens to what goes out).
+visualizer = true
+# The panel and the Control Center take their colors from the cover.
+artwork_colors = true
+
+# The settings, read live: changing one doesn't reload the shell.
+[[targets]]
+template = "settings.json.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/settings.json"
+
+[[targets]]
+template = "cava.conf.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/cava.conf"
+
+# What's playing, and the pieces the bar, the Control Center and the panel share.
+[[targets]]
+template = "qmldir.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/qmldir"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "NowPlaying.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/NowPlaying.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Cover.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/Cover.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Backdrop.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/Backdrop.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Seek.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/Seek.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Bars.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/Bars.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Marquee.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/Marquee.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "TrackText.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/TrackText.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Control.qml.tmpl"
+output = "~/.config/quickshell/mazapan/components/now-playing/Control.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+# In the bar, beside the clock.
+[[targets]]
+template = "Bar.qml.tmpl"
+output = "~/.config/quickshell/mazapan/widgets/center/25-now-playing.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+# In the Control Center, in place of its music: the same name, a higher
+# number (a Control Center part replaces the one of its name before it).
+[[targets]]
+template = "Section.qml.tmpl"
+output = "~/.config/quickshell/mazapan/control/sections/31-media.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "Panel.qml.tmpl"
+output = "~/.config/quickshell/mazapan/panels/now-playing.qml"
+reload = "sh ~/.local/share/mazapan/bin/shell-reload"
+
+[[targets]]
+template = "now-playing.lua.tmpl"
+output = "~/.config/hypr/mazapan/now-playing.lua"
+reload = "hyprctl reload >/dev/null"
+
+[[actions]]
+name = "{{ t \"act.open\" }}"
+run = "qs ipc -c mazapan call mazapan panel now-playing"
+# On the palette's first screen, among the places.
+home = 32
+glyph = "󰝚"
+label = "{{ t \"home\" }}"
+key = "{{ settings.key }}"
+keywords = "{{ t \"act.open.kw\" }}"
+
+[[actions]]
+name = "{{ t \"act.toggle\" }}"
+run = "qs ipc -c mazapan call nowplaying toggle"
+keywords = "{{ t \"act.toggle.kw\" }}"
+
+[[actions]]
+name = "{{ t \"act.next\" }}"
+run = "qs ipc -c mazapan call nowplaying next"
+keywords = "{{ t \"act.next.kw\" }}"
+
+[[actions]]
+name = "{{ t \"act.previous\" }}"
+run = "qs ipc -c mazapan call nowplaying previous"
+keywords = "{{ t \"act.previous.kw\" }}"
